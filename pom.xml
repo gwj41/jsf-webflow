@@ -14,7 +14,11 @@
     <build>
         <finalName>jsf-webflow</finalName>
     </build>
-
+    <properties>
+        <spring.security.version>4.0.3.RELEASE</spring.security.version>
+        <spring.framework.version>4.2.2.RELEASE</spring.framework.version>
+        <spring.webflow.version>2.4.2.RELEASE</spring.webflow.version>
+    </properties>
     <!-- Profile to run jetty, so the tomcat jars are included in the bundle. They are not included by default -->
     <profiles>
         <profile>
@@ -87,7 +91,17 @@
             <layout>legacy</layout>
         </repository>        
     </repositories>
-
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-framework-bom</artifactId>
+                <version>${spring.framework.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
     <!-- Project dependencies -->
     <dependencies>
         <!--
@@ -138,19 +152,30 @@
         <dependency>
             <groupId>org.springframework.webflow</groupId>
             <artifactId>spring-webflow</artifactId>
-            <version>2.4.0.RELEASE</version>
+            <version>${spring.webflow.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.webflow</groupId>
             <artifactId>spring-faces</artifactId>
-            <version>2.4.0.RELEASE</version>
+            <version>${spring.webflow.version}</version>
         </dependency>
 
         <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>${spring.security.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>${spring.security.version}</version>
+        </dependency>
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.0</version>
+            <version>4.12</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

@@ -8,8 +8,9 @@
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
 
 	<!-- Map paths directly to view names without controller processing. Use the view-name attribute if necessary: by convention the view name equals the path without the leading slash -->
+	<!--
 	<mvc:view-controller path="/helloWorld" />
-
+	-->
 	
 	<context:component-scan base-package="com.exigen.robbie" />
 	 

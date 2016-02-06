@@ -4,16 +4,12 @@
 	xsi:schemaLocation="
 		http://www.springframework.org/schema/webflow
 		http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
-<!--
-	<var name="user" class="com.exigen.robbie.HelloWorldBacking" />
--->
 
-    <view-state id="page2" view="page4.xhtml" model="user">
-		<transition on="booking1" to="page5"/>
+	<var name="user" class="com.exigen.robbie.HelloWorldBacking" />
+
+
+    <view-state id="page5" view="page5.xhtml" model="user">
     </view-state>
-	<view-state id="page5" model="user">
-		<secured attributes="ROLE_USER" match="any" />
-	</view-state>
     <!--
     <view-state id="helloWorld" model="user">
 		<transition on="submit" to="page2" />

@@ -9,20 +9,19 @@
 <body>
 <ui:composition template="template.xhtml">
 	<ui:define name="body">
-		<h:form id="form" action="${request.contextPath}/app/page2" method="post">
-			<h:panelGrid id="grid" columns="2">
-				<h:outputText id="output1" value="Please enter your user name" />
-				<h:inputText id="input1" value="#{user.name}"
-					required="true" />
-				<h:outputText id="output2" value="Please enter your password" />
-				<h:inputText id="input2" value="#{user.password}"
-							 required="true" />
-				<h:commandButton id="button1" value="press me"
-					action="/app/page2" />
+		<form id="form" action="${request.contextPath}/app/loginProcess" method="post">
+				Please enter your user name
+                <br/>
+                <input type="text" name="username" />
+				Please enter your password
+                <br/>
+                <input type="password" name="password" />
+				<input type="hidden"
+					   name="${_csrf.parameterName}"
+					   value="${_csrf.token}"/>
 				<input name="submit" type="submit" value="Login" />
-				<h:message id="message1" for="input1" />
-			</h:panelGrid>
-		</h:form>
+
+		</form>
         <a href="main">Click here to invoke the Facelets page</a>
     </ui:define>
 </ui:composition>
