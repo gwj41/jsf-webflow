@@ -2,15 +2,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	  xmlns:f="http://java.sun.com/jsf/core"
-	  xmlns:h="http://java.sun.com/jsf/html">
-<head>
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:p="http://primefaces.org/ui">
+<h:head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Myfaces Example Facelets</title>
-</head>
+</h:head>
 
-<body>
-<h1><ui:insert name="title">Myfaces Example Facelets</ui:insert></h1>
-<p><ui:insert name="body">Hello World Example!</ui:insert></p>
-</body>
+<h:body>
+    <h3>This is template!!!</h3>
+<br/>
+<ui:insert name="content">embedded page</ui:insert>
+</h:body>
 
 </html>

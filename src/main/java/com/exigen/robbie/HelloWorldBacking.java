@@ -19,6 +19,7 @@
 package com.exigen.robbie;
 
 import java.io.Serializable;
+import java.security.Principal;
 
 /**
  * A typical simple backing bean, that is backed to <code>helloworld.jsp</code>
@@ -31,6 +32,7 @@ public class HelloWorldBacking implements Serializable
     //properties
     private String name;
     private String password;
+    private Boolean moreInfo;
 
     /**
      * default empty constructor
@@ -58,12 +60,23 @@ public class HelloWorldBacking implements Serializable
         this.password = password;
     }
 
+    public Boolean getMoreInfo() {
+        return moreInfo;
+    }
+
+    public void setMoreInfo(Boolean moreInfo) {
+        this.moreInfo = moreInfo;
+    }
+
     /**
      * Method that is backed to a submit button of a form.
      */
-    public String send()
+    public String validateUserName(Principal user)
     {
-        //do real logic
-        return ("success");
+        if ("gwj".equals(user.getName())) {
+            return ("Welcome");
+        } else {
+            return ("Get Out");
+        }
     }
 }

@@ -1,0 +1,27 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	    		xmlns:ui="http://java.sun.com/jsf/facelets"
+	  			xmlns:h="http://java.sun.com/jsf/html"
+	  			xmlns:f="http://java.sun.com/jsf/core"
+				template="/WEB-INF/views/template.xhtml">
+
+<ui:define name="content">
+	<h:form id="form2">
+		<h:messages/>
+		<h:panelGroup layout="block" styleClass="success" rendered="${not empty emailSuggestion}">
+			<h:outputLabel for="email">Email suggestion: </h:outputLabel>
+			<h:outputText id="email" value="${emailSuggestion}"/>
+		</h:panelGroup>
+        <input type="hidden"
+               name="${_csrf.parameterName}"
+               value="${_csrf.token}"/>
+		<p>
+			<f:ajax render="form2">
+				<h:commandButton value="Edit" action="edit" />&nbsp;
+				<h:commandButton value="Exit" action="exit" />
+			</f:ajax>
+		</p>
+	</h:form>
+</ui:define>
+
+</ui:composition>

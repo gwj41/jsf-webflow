@@ -14,9 +14,9 @@
 	<security:http auto-config="true" use-expressions="true">
 		<security:form-login login-page="/app/helloWorld"
 							 login-processing-url="/app/loginProcess"
-							 default-target-url="/app/page3"
+							 default-target-url="/app/main"
 							 authentication-failure-url="/app/helloWorld?login_error=1" />
-		<security:csrf disabled="false"/>
+		<security:csrf disabled="true"/>
 	</security:http>
 
 	<security:authentication-manager>
@@ -26,7 +26,7 @@
 				<security:user name="gwj" password="123"
 							   authorities="ROLE_USER,ROLE_SUPERVISOR" />
 				<security:user name="erwin" password="12430911a8af075c6f41c6976af22b09"
-							   authorities="ROLE_USER,ROLE_SUPERVISOR" />
+							   authorities="ROLE_USER,ROLE_SUPERVISOR,ROLE_BEST" />
 				<security:user name="jeremy" password="57c6cbff0d421449be820763f03139eb"
 							   authorities="ROLE_USER" />
 				<security:user name="scott" password="942f2339bf50796de535a384f0d1af3e"

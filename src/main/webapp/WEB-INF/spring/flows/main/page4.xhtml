@@ -1,37 +1,47 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	  xmlns:ui="http://java.sun.com/jsf/facelets"
 	  xmlns:f="http://java.sun.com/jsf/core"
-	  xmlns:h="http://java.sun.com/jsf/html">
-<head>
-<title>Hello World</title>
-</head>
-<body>
+	  xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+	  template="/WEB-INF/views/template.xhtml">
+    <ui:define name="content">
+        <f:view>
+        <h:outputText
+            value="#{welcomeInfo} #{currentUser.name}. We hope you enjoy Apache MyFaces,worked!!!" />
 
-<f:view>
-	<h:outputText
-		value="Hello #{user.name}. We hope you enjoy Apache MyFaces,worked!!!" />
-	<h:form id="form">
-		<h:panelGrid id="grid" columns="2">
-			<h:outputText id="output1" value="Please enter your user name" />
-			<h:inputText id="input1" value="#{user.name}"
-						 required="true" />
-			<h:outputText id="output2" value="Please enter your password" />
-			<h:inputText id="input2" value="#{user.password}"
-						 required="true" />
+        <h:form id="form1">
+            <h:panelGrid id="grid" columns="2">
+                <h:outputText id="output1" value="Please enter your user name" />
+                <h:inputText id="input1" value="#{user.name}"
+                             required="true" />
+                <h:outputText id="output2" value="Please enter your password" />
+                <h:inputText id="input2" value="#{user.password}"
+                             required="true" />
 
-			<h:commandButton id="button1" value="press me"
-							 action="booking1" />
-			<input name="submit" type="submit" value="Login" />
-			<h:message id="message1" for="input1" />
-		</h:panelGrid>
-		<h:commandLink id="link1" action="back">
-			<h:outputText id="linkText" value="GO HOME" />
-		</h:commandLink>
-	</h:form>
-</f:view>
+                <h:commandButton id="button1" value="press me"
+                                 action="booking1" />
 
+                <h:message id="message1" for="input1" />
+            </h:panelGrid>
+            <h:commandButton value="Go home" action="exit" immediate="true" />
+        </h:form>
+        </f:view>
+        <div>
+            <h3>Embedded Sub-Flow Area</h3>
+            <h:form id="form2">
+                <h:selectOneRadio title="More information" value="#{user.moreInfo}" label="More information">
+                    <f:selectItem itemLabel="Yes" itemValue="true"/>
+                    <f:selectItem itemLabel="No" itemValue="false"/>
+                </h:selectOneRadio>
+                <p:commandButton value="Start Sub-Flow(primefaces)" action="start" update="form2"/><br/>
+                <f:ajax execute="@form" render="@form">
+                    <h:commandButton value="Start Sub-Flow" action="start"/>&nbsp;
+                    <h:commandButton value="Exit" action="exit" immediate="true" />
+                </f:ajax>
+            </h:form>
+        </div>
+    </ui:define>
 <a href="main">Click here to invoke the Facelets page</a>
 
-</body>
-</html>
+</ui:composition>

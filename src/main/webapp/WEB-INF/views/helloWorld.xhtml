@@ -1,21 +1,18 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
-<head>
-<title>Hello World</title>
-</head>
-<body>
-<ui:composition template="template.xhtml">
-	<ui:define name="body">
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/views/template.xhtml">
+
+	<ui:define name="content">
 		<form id="form" action="${request.contextPath}/app/loginProcess" method="post">
 				Please enter your user name
                 <br/>
-                <input type="text" name="username" />
+                <input type="text" name="username" value="${user.name}" />
 				Please enter your password
                 <br/>
-                <input type="password" name="password" />
+                <input type="password" name="password" value="${user.password}"/>
 				<input type="hidden"
 					   name="${_csrf.parameterName}"
 					   value="${_csrf.token}"/>
@@ -25,5 +22,4 @@
         <a href="main">Click here to invoke the Facelets page</a>
     </ui:define>
 </ui:composition>
-</body>
-</html>
+

@@ -3,21 +3,39 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="
 		http://www.springframework.org/schema/webflow
-		http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+		http://www.springframework.org/schema/webflow/spring-webflow-2.4.xsd"
+        parent="parent-flow">
 <!--
 	<var name="user" class="com.exigen.robbie.HelloWorldBacking" />
 -->
 
     <view-state id="page2" view="page4.xhtml" model="user">
+        <on-entry>
+            <evaluate expression="user.validateUserName(currentUser)" result="viewScope.welcomeInfo"/>
+        </on-entry>
 		<transition on="booking1" to="page5"/>
+		<transition on="start" to="moreInfo"/>
+		<transition on="home" to="gohome"/>
+
     </view-state>
-	<view-state id="page5" model="user">
+    <subflow-state id="embedded-flow" subflow="main/embedded-flow">
+        <input name="mode" value="'embedded'"/>
+        <transition on="end" to="page2"/>
+    </subflow-state>
+	<view-state id="page5" model="currentUser">
 		<secured attributes="ROLE_USER" match="any" />
 	</view-state>
+    <action-state id="moreInfo">
+        <evaluate expression="user.getMoreInfo()" />
+        <transition on="yes" to="embedded-flow" />
+        <transition on="no" to="end" />
+    </action-state>
     <!--
     <view-state id="helloWorld" model="user">
 		<transition on="submit" to="page2" />
 	</view-state>
 	<end-state id="page2" />
 	-->
+	<end-state id="gohome" view="externalRedirect:contextRelative:/index.html" />
+
 </flow>
